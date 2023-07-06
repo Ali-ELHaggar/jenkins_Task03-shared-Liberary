@@ -1,6 +1,6 @@
 def call() {
     pipeline {
-        agent any
+        agent {label 'Ec2_instance01'}
         stages {
             stage("prepare") {
                 steps {
