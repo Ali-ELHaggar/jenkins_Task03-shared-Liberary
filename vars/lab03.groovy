@@ -2,44 +2,46 @@ def call() {
     pipeline {
         agent any
         stages {
-            prepareStage()
-            checkStage()
-            testStage()
-            deploymentStage()
+            stage("prepare") {
+                steps {
+                    prepareStage()
+                }
+            }
+
+            stage("check") {
+                steps {
+                    checkStage()
+                }
+            }
+
+            stage("test") {
+                steps {
+                    testStage()
+                }
+            }
+
+            stage("deployment") {
+                steps {
+                    deploymentStage()
+                }
+            }
         }
     }
 }
 
 def prepareStage() {
-    stage("prepare") {
-        steps {
-            echo "preparing your code"
-        }
-    }
+    echo "preparing your code"
 }
 
 def checkStage() {
-    stage("check") {
-        steps {
-            echo "checking your code"
-        }
-    }
+    echo "checking your code"
 }
 
 def testStage() {
-    stage("test") {
-        steps {
-            echo "testing your code"
-        }
-    }
+    echo "testing your code"
 }
 
 def deploymentStage() {
-    stage("deployment") {
-        steps {
-            echo "your code is deployed right now"
-            echo "this build number $BUILD_NUMBER"
-        }
-    }
+    echo "your code is deployed right now"
+    echo "this build number $BUILD_NUMBER"
 }
-
